@@ -1,32 +1,143 @@
-/* Import Tailwind and DaisyUI */
 @import "tailwindcss";
-@plugin "daisyui";
-
-/* Default Light Mode Colors */
+@plugin "daisyui" {
+  themes: false;
+}
+/* Root theme variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode (vibrant + gradient aligned) */
+  --background-light: #f9f9fb;
+  --foreground-light: #1c1c1e;
+
+  --primary-light: #b129a1; /* Start of gradient */
+  --secondary-light: #ec3677; /* Middle of gradient */
+  --accent-light: #f48c4f; /* End of gradient */
+
+  --primary-light-hover: #9b248c;
+  --secondary-light-hover: #cf2f67;
+  --accent-light-hover: #e2773f;
+
+  /* Dark mode (you'll enable later) */
+  --background-dark: #121212;
+  --foreground-dark: #f0f0f0;
+
+  --primary-dark: #b129a1;
+  --secondary-dark: #ec3677;
+  --accent-dark: #f48c4f;
+
+  --primary-dark-hover: #9b248c;
+  --secondary-dark-hover: #cf2f67;
+  --accent-dark-hover: #e2773f;
 }
 
-/* Define Theme */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Light Mode Styles */
+body {
+  background-color: var(--background-light);
+  color: var(--foreground-light);
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Dark Mode Styles */
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--foreground-light);
+}
+
+/* Anchor */
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-light-hover);
+}
+
+/* Buttons */
+button,
+.btn-primary,
+.btn-secondary {
+  @apply px-4 py-2 font-semibold rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  border: none;
+  color: white;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: var(--primary-light);
+}
+.btn-primary:hover {
+  background-color: var(--primary-light-hover);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: var(--secondary-light);
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-light-hover);
+}
+
+/* Accent Button */
+.btn-accent {
+  background-color: var(--accent-light);
+}
+.btn-accent:hover {
+  background-color: var(--accent-light-hover);
+}
+
+/* Remove DaisyUI focus ring color (bluish) */
+:focus {
+  outline: none !important;
+}
+button:focus-visible,
+.btn:focus-visible {
+  @apply ring-2 ring-offset-2 ring-primary;
+}
+
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--background-dark);
+    --foreground: var(--foreground-dark);
+    --primary: var(--primary-dark);
+    --secondary: var(--secondary-dark);
+    --accent: var(--accent-dark);
   }
-}
 
-/* Global Body Styles */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background-color: var(--background-dark);
+    color: var(--foreground-dark);
+  }
+
+  a {
+    color: var(--accent-dark);
+  }
+  a:hover {
+    color: var(--accent-dark-hover);
+  }
+
+  .btn-primary {
+    background-color: var(--primary-dark);
+  }
+  .btn-primary:hover {
+    background-color: var(--primary-dark-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--secondary-dark);
+  }
+  .btn-secondary:hover {
+    background-color: var(--secondary-dark-hover);
+  }
+
+  .btn-accent {
+    background-color: var(--accent-dark);
+  }
+  .btn-accent:hover {
+    background-color: var(--accent-dark-hover);
+  }
 }
